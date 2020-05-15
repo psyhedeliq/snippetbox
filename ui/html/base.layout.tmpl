@@ -1,10 +1,12 @@
 {{define "base"}}
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8" />
     <title>{{template "title" .}} - Snippetbox</title>
   </head>
+
   <body>
     <header>
       <h1><a href="/">Snippetbox</a></h1>
@@ -15,6 +17,8 @@
     <main>
       {{template "main" .}}
     </main>
+    {{template "footer" .}}
   </body>
+  
 </html>
 {{end}}
