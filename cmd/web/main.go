@@ -29,19 +29,10 @@ func main() {
 		infoLog:  infoLog,
 	}
 
-	// Swap the route declarations to use the application struct's methods as the // handler functions.
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", app.home)
-	mux.HandleFunc("/snippet", app.showSnippet)
-	mux.HandleFunc("/snippet/create", app.createSnippet)
-
-	fileServer := http.FileServer(http.Dir("./ui/static"))
-	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
-
 	srv := &http.Server{
 		Addr:     *addr,
 		ErrorLog: errorLog,
-		Handler:  mux,
+		Handler:  app.routes(), // call the new app.routes()
 	}
 
 	// Write messages using the two new loggers, instead of the standard logger.
